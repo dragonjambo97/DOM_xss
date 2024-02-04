@@ -1,22 +1,24 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var dompurify_1 = __importDefault(require("dompurify"));
+// import DOMPurify from 'dompurify';
 window.onload = function () {
-    var params = new URLSearchParams(window.location.search);
-    var input = params.get('input');
+    var form = document.getElementById('inputForm');
     var displayArea = document.getElementById('displayArea');
-    if (input && displayArea) {
-        // Użyj innerHTML tylko dla celów demonstracyjnych. W rzeczywistych aplikacjach należy stosować sanitację!
-        displayArea.textContent = input;
+    // Obsługa wyświetlania danych z URL.
+    var params = new URLSearchParams(window.location.search);
+    var inputFromURL = params.get('input');
+    console.log("Input from URL:", inputFromURL); // Debugowanie: sprawdź wartość z URL.
+    if (inputFromURL && displayArea) {
+        displayArea.innerHTML = DOMPurify.sanitize(inputFromURL);
+    }
+    // Dodajemy listener do formularza, jeśli formularz istnieje.
+    if (form && displayArea) {
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Zapobiega domyślnej akcji formularza (przekierowanie).
+            var userInput = document.getElementById('userInput').value;
+            //console.log("User input from form:", userInput); // Debugowanie: sprawdź wartość wprowadzoną przez użytkownika.
+            displayArea.innerHTML = DOMPurify.sanitize(userInput);
+            // Wyczyść pole po wyświetleniu.
+            document.getElementById('userInput').value = '';
+        });
     }
 };
-function displayUserInput(input) {
-    var displayArea = document.getElementById('displayArea');
-    if (displayArea !== null) {
-        // W tym miejscu, dla celów demonstracyjnych używamy innerHTML, pamiętać o sanitacji danych wejściowych w realnych aplikacjach.
-        displayArea.innerHTML = dompurify_1.default.sanitize(input); // To jest podatne na Reflected XSS!
-    }
-}
