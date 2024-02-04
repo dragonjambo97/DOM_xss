@@ -5,7 +5,6 @@ window.onload = function () {
     // Obsługa wyświetlania danych z URL.
     var params = new URLSearchParams(window.location.search);
     var inputFromURL = params.get('input');
-    console.log("Input from URL:", inputFromURL); // Debugowanie: sprawdź wartość z URL.
     if (inputFromURL && displayArea) {
         displayArea.innerHTML = DOMPurify.sanitize(inputFromURL);
     }
