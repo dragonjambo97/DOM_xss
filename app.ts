@@ -1,19 +1,12 @@
 window.onload = function() {
     const form = document.getElementById('inputForm') as HTMLFormElement;
-    const displayArea = document.getElementById('displayArea');
-    
+    const displayArea = document.getElementById('displayArea');   
     // Obsługa wyświetlania danych z URL.
     const params = new URLSearchParams(window.location.search);
     const inputFromURL = params.get('input');
-
-    console.log("Input from URL:", inputFromURL); // Debugowanie: sprawdź wartość z URL.
-
-    if (inputFromURL && displayArea) {
-        
-         displayArea.innerHTML = DOMPurify.sanitize(inputFromURL);
-        
+    if (inputFromURL && displayArea) {       
+         displayArea.innerHTML = DOMPurify.sanitize(inputFromURL);        
     }
-
     // Dodaje listener do formularza, jeśli formularz istnieje.
     if (form && displayArea) {
         form.addEventListener('submit', function(event) {
