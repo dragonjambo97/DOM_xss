@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM XSS Demo</title>
+    <title>Reflected XSS Demo</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <input type="text" id="userInput" placeholder="Wpisz coś...">
-    <button onclick="displayUserInput()">Wyświetl</button>
+    <h1>Reflected XSS Demo</h1>
+    <form id="inputForm" method="get">
+        <input type="text" id="userInput" name= "input" placeholder="Wpisz coś...">
+        <button type="submit">Wyświetl</button>
+    </form>
     <div id="displayArea"></div>
-    <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@2/dist/purify.min.js"></script>
+<script src="app.js"></script>
+
 </body>
 </html>
