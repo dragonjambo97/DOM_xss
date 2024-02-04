@@ -1,2 +1,2 @@
-# DOM_xss
-to test DOM xss and prevent it 
+# Reflected_xss
+to test Reflected xss and prevent it 
