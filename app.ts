@@ -1,5 +1,3 @@
-// import DOMPurify from 'dompurify';
-
 window.onload = function() {
     const form = document.getElementById('inputForm') as HTMLFormElement;
     const displayArea = document.getElementById('displayArea');
@@ -16,14 +14,12 @@ window.onload = function() {
         
     }
 
-    // Dodajemy listener do formularza, jeśli formularz istnieje.
+    // Dodaje listener do formularza, jeśli formularz istnieje.
     if (form && displayArea) {
         form.addEventListener('submit', function(event) {
             event.preventDefault(); // Zapobiega domyślnej akcji formularza (przekierowanie).
 
-            const userInput = (document.getElementById('userInput') as HTMLInputElement).value;
-            //console.log("User input from form:", userInput); // Debugowanie: sprawdź wartość wprowadzoną przez użytkownika.
-            
+            const userInput = (document.getElementById('userInput') as HTMLInputElement).value;            
              displayArea.innerHTML = DOMPurify.sanitize(userInput);            
 
             // Wyczyść pole po wyświetleniu.
